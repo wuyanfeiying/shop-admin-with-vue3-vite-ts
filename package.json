@@ -8,7 +8,7 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint ./src/**/*.{js,jsx,vue,ts,tsx} --fix",
-    "prepare": "husky install"
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "vue": "^3.3.4"
@@ -34,5 +34,10 @@
       "npm run lint",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
