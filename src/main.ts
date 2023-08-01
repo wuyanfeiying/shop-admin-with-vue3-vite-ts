@@ -7,4 +7,5 @@ import './style.css'
 import App from './App.vue'
 console.log(2);
 a = 123;
+b=456;
 createApp(App).mount('#app')
