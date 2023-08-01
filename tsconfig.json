@@ -20,6 +20,15 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts", 
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    
+    // 新增:明确包含ESLint要检查的文件
+    "tests/**/*.ts",
+    "scripts/**/*.ts" 
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,1 +1,2 @@
-/// <reference types="vite/client" />
+// 改为 import 语法：
+import 'vite/client'
