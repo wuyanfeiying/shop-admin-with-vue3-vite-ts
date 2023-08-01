@@ -6,5 +6,5 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 console.log(2);
-a = 123;
+a = 123   ;
 createApp(App).mount('#app')
