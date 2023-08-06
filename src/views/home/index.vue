@@ -4,14 +4,11 @@
 -->
 <template>
   <h1>Home</h1>
-  {{ count }}
-  <h1> {{ $store.state.count }}</h1>
+  <img src="@/assets/vue.svg">
 </template>
 
 <script setup lang='ts'>
-import { useStore } from '../../store'
-const store = useStore()
-const count = store.state.count
-console.log(store.state.count)
+import User from '@/api/user'
+console.log('🚀 ~ file: index.vue:11 ~ User:', User)
 
 </script>
