@@ -12,3 +12,11 @@ import User from '@/api/user'
 console.log('🚀 ~ file: index.vue:11 ~ User:', User)
 
 </script>
+
+<style lang="scss" scoped>
+// @import '@/styles/variables.scss';
+
+  h1 {
+    color: $color;
+  }
+</style>
