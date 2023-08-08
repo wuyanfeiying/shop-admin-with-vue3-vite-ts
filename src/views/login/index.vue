@@ -7,12 +7,16 @@
 </template>
 
 <script setup lang='ts'>
+import type { ILoginInfo } from '@/api/types/common'
 import { getLoginInfo } from '@/api/common'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+
+const list = ref<ILoginInfo['slide']>([])
 
 onMounted(() => {
-  getLoginInfo().then(res => {
-    console.log(res.data.data)
+  getLoginInfo().then(data => {
+    list.value = data.slide
+    console.log(list.value)
   })
 })
 </script>
