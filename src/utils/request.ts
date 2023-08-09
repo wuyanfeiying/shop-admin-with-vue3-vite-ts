@@ -5,7 +5,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
 const request = axios.create({
-  baseURL: 'http://yapi.fed.lagounews.com/'
+  baseURL: import.meta.env.VITE_API_BASEURL
 })
 
 // 请求拦截器
