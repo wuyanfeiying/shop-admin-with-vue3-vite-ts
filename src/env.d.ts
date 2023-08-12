@@ -6,3 +6,4 @@
 interface ImportMetaEnv {
   VITE_API_BASEURL: string
 }
+declare module 'element-plus/dist/locale/zh-cn.mjs'
