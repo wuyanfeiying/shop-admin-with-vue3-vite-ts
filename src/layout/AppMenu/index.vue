@@ -11,6 +11,8 @@
     default-active="2"
     text-color="#fff"
     router
+    :collapse-transition="false"
+    :collapse="store.state.isCollapse"
   >
     <el-menu-item index="/">
       <el-icon><Menu /></el-icon>
@@ -69,6 +71,8 @@
 
 <script setup lang='ts'>
 import { Menu, Location } from '@element-plus/icons-vue'
+import { useStore } from '@/store'
+const store = useStore()
 </script>
 
 <style lang="scss" scoped>
