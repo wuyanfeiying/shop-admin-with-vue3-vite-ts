@@ -10,6 +10,9 @@ const routes: RouteRecordRaw = {
   path: 'product',
   name: 'product',
   component: RouterView, // 占位 引入 router-view
+  meta: {
+    title: '商品'
+  },
   children: [
     {
       path: 'prodcut_list',

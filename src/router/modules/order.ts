@@ -10,16 +10,25 @@ const routes: RouteRecordRaw = {
   path: 'order',
   name: 'order',
   component: RouterView, // 占位 引入 router-view
+  meta: {
+    title: '订单'
+  },
   children: [
     {
       path: 'order_list',
       name: 'order_list',
-      component: () => import('@/views/order/list/index.vue')
+      component: () => import('@/views/order/list/index.vue'),
+      meta: {
+        title: '订单列表'
+      }
     },
     {
       path: 'order_offline',
       name: 'order_offline',
-      component: () => import('@/views/order/offline/index.vue')
+      component: () => import('@/views/order/offline/index.vue'),
+      meta: {
+        title: '离线订购'
+      }
     }
   ]
 }

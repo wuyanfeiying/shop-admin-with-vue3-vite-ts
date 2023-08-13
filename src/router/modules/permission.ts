@@ -10,6 +10,9 @@ const routes: RouteRecordRaw = {
   path: 'permission',
   name: 'permission',
   component: RouterView, // 占位 引入 router-view
+  meta: {
+    title: '权限'
+  },
   children: [
     {
       path: 'permission_admin',
