@@ -1,9 +1,10 @@
 <!--
- * @Date: 2023-08-12 14:59:28
+ * @Date: 2023-08-13 12:58:31
  * @LastEditors: wuyanfeiying
+ * @desc: 添加商品
 -->
 <template>
-  order offline
+  添加商品
 </template>
 
 <script setup lang='ts'>

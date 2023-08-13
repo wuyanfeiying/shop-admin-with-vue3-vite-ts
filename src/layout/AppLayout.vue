@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang='ts'>
-import AppMenu from './components/AppMenu.vue'
+import AppMenu from './AppMenu/index.vue'
 </script>
 
 <style lang="scss" scoped>
