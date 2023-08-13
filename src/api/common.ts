@@ -12,3 +12,15 @@ export const getLoginInfo = () => {
     url: '/api/admin/login/info'
   })
 }
+
+// 获取图片验证码
+export const getCaptcha = () => {
+  return request<Blob>({
+    method: 'GET',
+    url: '/api/admin/captcha_pro',
+    params: {
+      stamp: Date.now()
+    },
+    responseType: 'blob' // 请求获取图片数据
+  })
+}

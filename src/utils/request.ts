@@ -26,5 +26,5 @@ request.interceptors.response.use(function (response) {
 
 export default async <T = any> (config:AxiosRequestConfig) => {
   const res = await request(config)
-  return res.data.data as T
+  return (res.data.data || res.data) as T
 }
