@@ -7,11 +7,15 @@
     <ToggleSidebar />
     <Breadcrumb />
   </el-space>
+  <el-space size="large">
+    <FullScreen />
+  </el-space>
 </template>
 
 <script setup lang='ts'>
 import ToggleSidebar from './ToggleSidebar.vue'
 import Breadcrumb from './Breadcrumb.vue'
+import FullScreen from './FullScreen.vue'
 
 </script>
 
