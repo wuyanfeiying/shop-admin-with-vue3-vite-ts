@@ -10,7 +10,7 @@
       :rules="rules"
       ref="form"
       :model="user"
-      size="medium"
+      size="small"
       @submit.prevent="handleSubmit"
     >
       <div class="login-form__header">
@@ -78,7 +78,13 @@
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from 'vue'
 import { Sunny } from '@element-plus/icons-vue'
-import { getCaptcha } from '@/api/common'
+import { getCaptcha, login } from '@/api/common'
+import { ElForm } from 'element-plus'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const form = ref<InstanceType<typeof ElForm> | null>(null)
 
 const captchaSrc = ref('')
 const user = reactive({
@@ -110,6 +116,23 @@ const loadCaptcha = async () => {
 
 const handleSubmit = async () => {
   console.log('handleSubmit')
+  // 表单验证
+  const valid = await form.value?.validate()
+  if (!valid) {
+    return false
+  }
+
+  // 验证通过，展示 loading
+  loading.value = true
+
+  // 请求提交
+  const data = await login(user).finally(() => {
+    loading.value = false
+  })
+  console.log('🚀 ~ file: index.vue:127 ~ handleSubmit ~ data:', data)
+  router.push({
+    name: 'home'
+  })
 }
 
 </script>
