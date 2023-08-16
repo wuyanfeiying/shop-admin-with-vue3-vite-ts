@@ -79,12 +79,12 @@
 import { onMounted, reactive, ref } from 'vue'
 import { Sunny } from '@element-plus/icons-vue'
 import { getCaptcha, login } from '@/api/common'
-import { ElForm } from 'element-plus'
 import { useRouter } from 'vue-router'
+import type { IElForm, IFormItemRule } from '@/types/element-plus'
 
 const router = useRouter()
 
-const form = ref<InstanceType<typeof ElForm> | null>(null)
+const form = ref<IElForm | null>(null)
 
 const captchaSrc = ref('')
 const user = reactive({
@@ -93,7 +93,7 @@ const user = reactive({
   imgcode: ''
 })
 const loading = ref(false)
-const rules = ref({
+const rules = ref<IFormItemRule>({
   account: [
     { required: true, message: '请输入账号', trigger: 'change' }
   ],
