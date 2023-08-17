@@ -2,6 +2,7 @@
  * @Date: 2023-08-06 19:22:18
  * @LastEditors: wuyanfeiying
  */
+import { store } from '@/store'
 import axios, { AxiosRequestConfig } from 'axios'
 import { ElMessage } from 'element-plus'
 
@@ -12,6 +13,10 @@ const request = axios.create({
 // 请求拦截器
 request.interceptors.request.use(function (config) {
   // 统一设置用户身份 token
+  const user = store.state.user
+  if (user && user.token) {
+    config.headers.Authorization = `Bearer ${user.token}`
+  }
   return config
 }, function (error) {
   return Promise.reject(error)

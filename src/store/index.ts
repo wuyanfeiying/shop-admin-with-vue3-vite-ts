@@ -11,7 +11,7 @@ import { IUserInfo } from '@/api/types/common'
 
 const state = {
   isCollapse: false,
-  user: getItem<IUserInfo>(USER)
+  user: getItem<{ token: string } & IUserInfo>(USER)
 }
 // 为 store state 声明类型
 // 根据 state的值，推导出类型
@@ -29,7 +29,6 @@ export const store = createStore<State>({
     },
 
     setUser (state, payload) {
-      console.log('🚀 ~ file: index.ts:32 ~ setUser ~ state, payload:', state, payload)
       state.user = payload
       setItem(USER, state.user)
     }

@@ -9,7 +9,7 @@ import { ILoginInfo, ILoginResponse } from './types/common'
 export const getLoginInfo = () => {
   return request<ILoginInfo>({
     method: 'GET',
-    url: '/api/admin/login/info'
+    url: '/login/info'
   })
 }
 
@@ -17,7 +17,7 @@ export const getLoginInfo = () => {
 export const getCaptcha = () => {
   return request<Blob>({
     method: 'GET',
-    url: import.meta.env.VITE_API_BASEURL + '/api/admin/captcha_pro',
+    url: '/captcha_pro',
     params: {
       stamp: Date.now()
     },
@@ -33,7 +33,15 @@ export const login = (data: {
 }) => {
   return request<ILoginResponse>({
     method: 'POST',
-    url: '/api/admin/login',
+    url: '/login',
     data
+  })
+}
+
+// 登出
+export const logout = () => {
+  return request({
+    method: 'GET',
+    url: '/setting/admin/logout'
   })
 }
