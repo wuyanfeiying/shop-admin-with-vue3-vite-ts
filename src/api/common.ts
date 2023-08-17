@@ -17,7 +17,7 @@ export const getLoginInfo = () => {
 export const getCaptcha = () => {
   return request<Blob>({
     method: 'GET',
-    url: '/api/admin/captcha_pro',
+    url: import.meta.env.VITE_API_BASEURL + '/api/admin/captcha_pro',
     params: {
       stamp: Date.now()
     },
@@ -32,7 +32,7 @@ export const login = (data: {
   imgcode: string
 }) => {
   return request<ILoginResponse>({
-    method: 'GET',
+    method: 'POST',
     url: '/api/admin/login',
     data
   })

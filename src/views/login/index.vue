@@ -81,8 +81,11 @@ import { Sunny } from '@element-plus/icons-vue'
 import { getCaptcha, login } from '@/api/common'
 import { useRouter } from 'vue-router'
 import type { IElForm, IFormItemRule } from '@/types/element-plus'
+import { ElMessage } from 'element-plus'
+import { useStore } from '@/store'
 
 const router = useRouter()
+const store = useStore()
 
 const form = ref<IElForm | null>(null)
 
@@ -126,10 +129,24 @@ const handleSubmit = async () => {
   loading.value = true
 
   // 请求提交
-  const data = await login(user).finally(() => {
+  const data = await login(user).catch(() => {
+    loadCaptcha() // 刷新验证码
+  }).finally(() => {
     loading.value = false
   })
-  console.log('🚀 ~ file: index.vue:127 ~ handleSubmit ~ data:', data)
+
+  if (!data) return
+
+  ElMessage.success('登录成功')
+
+  // 存储登录用户信息
+  store.commit('setUser', {
+    ...data.user_info,
+    token: data.token
+  })
+
+  // store.commit('setMenus', data.menus)
+
   router.push({
     name: 'home'
   })

@@ -5,9 +5,13 @@
  */
 import { createStore, Store, useStore as baseUseStore } from 'vuex'
 import { InjectionKey } from 'vue'
+import { getItem, setItem } from '@/utils/storage'
+import { USER } from '@/utils/constants'
+import { IUserInfo } from '@/api/types/common'
 
 const state = {
-  isCollapse: false
+  isCollapse: false,
+  user: getItem<IUserInfo>(USER)
 }
 // 为 store state 声明类型
 // 根据 state的值，推导出类型
@@ -22,6 +26,12 @@ export const store = createStore<State>({
   mutations: {
     setIsCollapse (state, payload) {
       state.isCollapse = payload
+    },
+
+    setUser (state, payload) {
+      console.log('🚀 ~ file: index.ts:32 ~ setUser ~ state, payload:', state, payload)
+      state.user = payload
+      setItem(USER, state.user)
     }
   }
 })
