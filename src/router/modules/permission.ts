@@ -11,7 +11,8 @@ const routes: RouteRecordRaw = {
   name: 'permission',
   component: RouterView, // 占位 引入 router-view
   meta: {
-    title: '权限'
+    title: '权限',
+    requiresAuth: true
   },
   children: [
     {

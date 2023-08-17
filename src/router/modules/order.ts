@@ -11,7 +11,8 @@ const routes: RouteRecordRaw = {
   name: 'order',
   component: RouterView, // 占位 引入 router-view
   meta: {
-    title: '订单'
+    title: '订单',
+    requiresAuth: true
   },
   children: [
     {

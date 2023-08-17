@@ -79,12 +79,13 @@
 import { onMounted, reactive, ref } from 'vue'
 import { Sunny } from '@element-plus/icons-vue'
 import { getCaptcha, login } from '@/api/common'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import type { IElForm, IFormItemRule } from '@/types/element-plus'
 import { ElMessage } from 'element-plus'
 import { useStore } from '@/store'
 
 const router = useRouter()
+const route = useRoute()
 const store = useStore()
 
 const form = ref<IElForm | null>(null)
@@ -147,9 +148,11 @@ const handleSubmit = async () => {
 
   // store.commit('setMenus', data.menus)
 
-  router.push({
-    name: 'home'
-  })
+  let redirect = route.query.redirect || '/'
+  if (typeof redirect !== 'string') {
+    redirect = '/'
+  }
+  router.push(redirect)
 }
 
 </script>
