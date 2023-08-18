@@ -2,6 +2,9 @@
  * @Date: 2023-08-06 15:26:14
  * @LastEditors: wuyanfeiying
  * @desc: https://vuex.vuejs.org/zh/guide/typescript-support.html
+ * desc: store 是 Vuex 的核心,useStore 是组合式获取 store 的方法
+ * store 创建状态管理,类似 vue2 中的 new Vuex.Store()
+ *useStore 在组件中导入并调用以获取 store,类似 vue2 中的 this.$store
  */
 import { createStore, Store, useStore as baseUseStore } from 'vuex'
 import { InjectionKey } from 'vue'
