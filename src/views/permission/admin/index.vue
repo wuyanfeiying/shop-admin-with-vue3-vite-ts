@@ -150,6 +150,7 @@ onMounted(() => {
 const loadList = async () => {
   const data = await getAdmins(listParams)
   list.value = data.list
+  listCount.value = data.count
 }
 
 const handleQuery = async () => {
