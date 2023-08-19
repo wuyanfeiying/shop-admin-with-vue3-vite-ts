@@ -3,7 +3,10 @@
  * @LastEditors: wuyanfeiying
 -->
 <template>
-  <el-dropdown trigger="click">
+  <el-dropdown
+    class="ly-dropdown"
+    trigger="click"
+  >
     <span class="el-dropdown-link">
       {{ $store.state.user?.account }}<el-icon class="el-icon--right"><ArrowDown /></el-icon>
     </span>
@@ -55,6 +58,9 @@ const handleLogin = () => {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .ly-dropdown:hover {
+    cursor: pointer;
+    color: $brandColor;
+  }
 </style>

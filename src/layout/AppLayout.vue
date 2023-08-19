@@ -11,7 +11,6 @@
       >
         <AppMenu />
       </el-aside>
-
       <el-container class="el-container">
         <el-header class="el-header">
           <AppHeader />
@@ -31,8 +30,11 @@ import AppHeader from './AppHeader/index.vue'
 
 <style lang="scss" scoped>
   .el-header {
-    background-color: #B3C0D1;
+    background-color: #fff;
     color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .el-aside {
     background-color: #304156;
@@ -47,7 +49,7 @@ import AppHeader from './AppHeader/index.vue'
     height: 100vh;
   }
   .el-menu:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
-}
+    width: 200px;
+    min-height: 400px;
+  }
 </style>
