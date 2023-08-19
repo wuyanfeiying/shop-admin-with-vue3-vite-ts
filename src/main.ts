@@ -19,7 +19,10 @@ app.use(elementPlus)
 const modules = import.meta.glob('./components/**/index.ts')
 
 for (const path in modules) {
-  app.use(modules[path])
-}
+  // 根据路径导入组件
+  const component = await import(path)
 
+  // 注册组件
+  app.use(component.default)
+}
 app.mount('#app')
