@@ -32,15 +32,15 @@ export default defineConfig({
         additionalData: '@import "@/styles/variables.scss";'
       }
     }
-  },
-  server: {
-    proxy: {
-      // 选项写法
-      '/api': {
-        // /api/admin => http://yapi.fed.lagounews.com/api/admin/login
-        target: 'http://yapi.fed.lagounews.com', // 代理的目标地址
-        changeOrigin: true
-      }
-    }
   }
+  // server: {
+  //   proxy: {
+  //     // 选项写法
+  //     '/api': {
+  //       // /api/admin => http://yapi.fed.lagounews.com/api/admin/login
+  //       target: 'https://shop.fed.lagounews.com/api/admin', // 代理的目标地址
+  //       changeOrigin: true
+  //     }
+  //   }
+  // }
 })

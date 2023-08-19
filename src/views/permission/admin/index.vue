@@ -60,7 +60,6 @@
         :data="list"
         stripe
         style="width: 100%"
-        v-loading="listLoading"
       >
         <el-table-column
           prop="id"
@@ -122,6 +121,7 @@
         v-model:page="listParams.page"
         v-model:limit="listParams.limit"
         :list-count="listCount"
+        :load-list="loadList"
       />
     </app-card>
   </page-container>
@@ -134,7 +134,7 @@ import { onMounted, reactive, ref } from 'vue'
 
 const list = ref<Admin[]>([]) // 列表数据
 const listCount = ref(0)
-const listLoading = ref(true)
+
 const listParams = reactive({ // 列表数据查询参数
   page: 1, // 当前页码
   limit: 10, // 每页大小

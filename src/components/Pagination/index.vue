@@ -16,8 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
-
 const props = defineProps({
   page: { // 页码
     type: Number,
@@ -32,25 +30,20 @@ const props = defineProps({
     default: 0
   },
   loadList: {
-    type: Function as PropType<(...args: any[]) => void>,
+    type: Function,
     default: () => {}
   }
 })
 
-interface EmitsType {
-  (e: 'update:page', page: number, a: string): void
-  (e: 'update:limit', limit: number): void
-}
-
-const emit = defineEmits<EmitsType>()
+const emit = defineEmits(['update:page', 'update:limit'])
 
 const handleCurrentChange = (page: number) => {
-  emit('update:page', page, 'dsadsa')
+  emit('update:page', page)
   props.loadList()
 }
 
 const handleSizeChange = (size: number) => {
-  emit('update:page', 1, 'dsanjdnsa')
+  emit('update:page', 1)
   emit('update:limit', size)
   props.loadList()
 }
