@@ -53,6 +53,7 @@
       <template #header>
         <el-button
           type="primary"
+          @click="formVisible = true"
         >
           添加管理员
         </el-button>
@@ -120,7 +121,10 @@
           align="center"
         >
           <template #default="scope">
-            <el-button link>
+            <el-button
+              link
+              @click="handleUpdate(scope.row.id)"
+            >
               编辑
             </el-button>
             <el-popconfirm
@@ -145,6 +149,21 @@
       />
     </app-card>
   </page-container>
+  <!-- 子组件并没有主动绑定 v-Modle 子组件也主动触发没有 @closed的
+    这里之所以可以触发， 是因为会默认作用到根节点上
+    下面的@closed别不能在子组件内部修改 adminID
+  -->
+  <!-- <admin-form
+    v-model="formVisible"
+    :admin-id="adminId"
+    @closed="adminId = null"
+  /> -->
+
+  <!-- 下面的方法 可以在子组件内容 修改 adminID -->
+  <admin-form
+    v-model="formVisible"
+    v-model:admin-id="adminId"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -152,11 +171,13 @@ import { deleteAdmin, getAdmins, updateAdminStatus } from '@/api/admin'
 import type { Admin, IListParams } from '@/api/types/admin'
 import { ElMessage } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue'
+import AdminForm from './AdminForm.vue'
 
 const list = ref<Admin[]>([]) // 列表数据
 const listCount = ref(0)
 const listLoading = ref(true)
-
+const formVisible = ref(false)
+const adminId = ref<number | null>(null)
 const listParams = reactive({ // 列表数据查询参数
   page: 1, // 当前页码
   limit: 10, // 每页大小
@@ -200,6 +221,11 @@ const handleStatusChange = async (item: Admin) => {
   ElMessage.success(`${item.status === 1 ? '启用' : '禁用'}成功`)
 }
 
+// 修改
+const handleUpdate = (id: number) => {
+  adminId.value = id
+  formVisible.value = true
+}
 </script>
 
 <style lang="scss" scoped></style>
