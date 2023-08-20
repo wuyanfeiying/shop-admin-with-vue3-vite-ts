@@ -74,7 +74,7 @@ export const getAdmin = (id: number) => {
       pwd: string
       conf_pwd: string
       real_name: string
-      roles: string[]
+      roles: number[]
       status: 0 | 1
     }
   })
