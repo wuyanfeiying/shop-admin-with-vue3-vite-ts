@@ -12,6 +12,7 @@
         :inline="true"
         ref="form"
         :model="listParams"
+        :disabled="listLoading"
         @submit.prevent="handleQuery"
       >
         <el-form-item label="状态">
@@ -60,6 +61,7 @@
         :data="list"
         stripe
         style="width: 100%"
+        v-loading="listLoading"
       >
         <el-table-column
           prop="id"
@@ -121,6 +123,7 @@
         v-model:page="listParams.page"
         v-model:limit="listParams.limit"
         :list-count="listCount"
+        :disabled="listLoading"
         :load-list="loadList"
       />
     </app-card>
@@ -134,6 +137,7 @@ import { onMounted, reactive, ref } from 'vue'
 
 const list = ref<Admin[]>([]) // 列表数据
 const listCount = ref(0)
+const listLoading = ref(true)
 
 const listParams = reactive({ // 列表数据查询参数
   page: 1, // 当前页码
@@ -148,7 +152,10 @@ onMounted(() => {
 })
 
 const loadList = async () => {
-  const data = await getAdmins(listParams)
+  listLoading.value = true
+  const data = await getAdmins(listParams).finally(() => {
+    listLoading.value = false
+  })
   list.value = data.list
   listCount.value = data.count
 }
