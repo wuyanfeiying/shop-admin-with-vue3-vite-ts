@@ -16,6 +16,8 @@
 </template>
 
 <script lang="ts" setup>
+// import { PropType } from 'vue'
+
 const props = defineProps({
   page: { // 页码
     type: Number,
@@ -33,9 +35,35 @@ const props = defineProps({
     type: Function,
     default: () => {}
   }
+  // 如何给对象指定类型的例子
+  // obj: {
+  //   type: Object as PropType<{a: string, b : number}>,
+  //   required: true
+  // }
 })
 
-const emit = defineEmits(['update:page', 'update:limit'])
+// interface PropsType {
+//   page: number
+//   limit: number
+//   listCOunt: number
+//   loadList: () => void
+// }
+
+// const props = withDefaults(defineProps<PropsType>(), {
+//   page: 1,
+//   limit: 10,
+//   listCount: 0,
+//   loadList: () => {}
+// })
+// const props = defineProps<PropsType>()
+
+// const emit = defineEmits(['update:page', 'update:limit'])
+// 给emit加TS类型
+interface EmitType {
+  (e: 'update:page', page: number): void
+  (e: 'update:limit', limit: number): void
+}
+const emit = defineEmits<EmitType>()
 
 const handleCurrentChange = (page: number) => {
   emit('update:page', page)
