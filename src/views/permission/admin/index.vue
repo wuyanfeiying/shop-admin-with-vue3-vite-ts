@@ -109,6 +109,7 @@
               :active-value="1"
               :inactive-value="0"
               :loading="scope.row.statusLoading"
+              @change="handleStatusChange(scope.row)"
             />
           </template>
         </el-table-column>
@@ -119,7 +120,7 @@
           align="center"
         >
           <template #default="scope">
-            <el-button type="text">
+            <el-button link>
               编辑
             </el-button>
             <el-popconfirm
@@ -127,7 +128,7 @@
               @confirm="handleDelete(scope.row.id)"
             >
               <template #reference>
-                <el-button type="text">
+                <el-button link>
                   删除
                 </el-button>
               </template>
@@ -147,7 +148,7 @@
 </template>
 
 <script lang="ts" setup>
-import { deleteAdmin, getAdmins } from '@/api/admin'
+import { deleteAdmin, getAdmins, updateAdminStatus } from '@/api/admin'
 import type { Admin, IListParams } from '@/api/types/admin'
 import { ElMessage } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue'
@@ -173,6 +174,9 @@ const loadList = async () => {
   const data = await getAdmins(listParams).finally(() => {
     listLoading.value = false
   })
+  data.list.forEach(item => {
+    item.statusLoading = false // 控制切换状态的loading效果
+  })
   list.value = data.list
   listCount.value = data.count
 }
@@ -185,6 +189,15 @@ const handleDelete = async (id: number) => {
   await deleteAdmin(id)
   ElMessage.success('删除成功')
   loadList()
+}
+
+// 切换状态
+const handleStatusChange = async (item: Admin) => {
+  item.statusLoading = true
+  await updateAdminStatus(item.id, item.status).finally(() => {
+    item.statusLoading = false
+  })
+  ElMessage.success(`${item.status === 1 ? '启用' : '禁用'}成功`)
 }
 
 </script>
