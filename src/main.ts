@@ -20,7 +20,7 @@ const modules = import.meta.glob('./components/**/index.ts')
 
 for (const path in modules) {
   // 根据路径导入组件
-  const component = await import(path)
+  const component = await import(/* @vite-ignore */path)
 
   // 注册组件
   app.use(component.default)

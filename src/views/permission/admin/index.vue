@@ -117,7 +117,23 @@
           fixed="right"
           min-width="100"
           align="center"
-        />
+        >
+          <template #default="scope">
+            <el-button type="text">
+              编辑
+            </el-button>
+            <el-popconfirm
+              title="确认删除吗?"
+              @confirm="handleDelete(scope.row.id)"
+            >
+              <template #reference>
+                <el-button type="text">
+                  删除
+                </el-button>
+              </template>
+            </el-popconfirm>
+          </template>
+        </el-table-column>
       </el-table>
       <app-pagination
         v-model:page="listParams.page"
@@ -131,8 +147,9 @@
 </template>
 
 <script lang="ts" setup>
-import { getAdmins } from '@/api/admin'
+import { deleteAdmin, getAdmins } from '@/api/admin'
 import type { Admin, IListParams } from '@/api/types/admin'
+import { ElMessage } from 'element-plus'
 import { onMounted, reactive, ref } from 'vue'
 
 const list = ref<Admin[]>([]) // 列表数据
@@ -161,6 +178,12 @@ const loadList = async () => {
 }
 
 const handleQuery = async () => {
+  loadList()
+}
+
+const handleDelete = async (id: number) => {
+  await deleteAdmin(id)
+  ElMessage.success('删除成功')
   loadList()
 }
 
