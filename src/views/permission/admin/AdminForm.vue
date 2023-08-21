@@ -141,14 +141,14 @@ const formRules: IFormItemRule = {
 
 const handleDialogOpen = () => {
   formLoading.value = true
-  loadRoles()
-  loadAdmin()
+
+  Promise.all([loadRoles(), loadAdmin()]).finally(() => {
+    formLoading.value = false
+  })
 }
 
 const loadRoles = async () => {
-  const data = await getRoles().finally(() => {
-    formLoading.value = false
-  })
+  const data = await getRoles()
   roles.value = data
 }
 
@@ -156,9 +156,7 @@ const loadAdmin = async () => {
   if (!props.adminId) {
     return
   }
-  const data = await getAdmin(props.adminId).finally(() => {
-    formLoading.value = false
-  })
+  const data = await getAdmin(props.adminId)
   formData.value = data
 }
 
