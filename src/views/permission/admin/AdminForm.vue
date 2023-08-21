@@ -5,6 +5,7 @@
 <template>
   <app-dialog-form
     :title="props.adminId ? '编辑管理员' : '添加管理员'"
+    :confirm="handleSubmit"
     @closed="handleDialogClosed"
     @open="handleDialogOpen"
   >
@@ -87,9 +88,10 @@
 </template>
 
 <script setup lang='ts'>
-import { getRoles, getAdmin } from '@/api/admin'
+import { getRoles, getAdmin, updateAdmin, createAdmin } from '@/api/admin'
 import { ISelectOptions } from '@/api/types/form'
 import { IElForm, IFormItemRule } from '@/types/element-plus'
+import { ElMessage } from 'element-plus'
 import { ref, type PropType } from 'vue'
 
 const props = defineProps({
@@ -101,6 +103,7 @@ const props = defineProps({
 
 interface EmitsType {
     (e: 'update:admin-id', value: number | null): void
+    (e: 'success'): void
 }
 
 const emit = defineEmits<EmitsType>()
@@ -163,6 +166,22 @@ const handleDialogClosed = () => {
   emit('update:admin-id', null)
   form.value?.clearValidate() // 清除验证结果
   form.value?.resetFields() // 清除表单数据
+}
+
+const handleSubmit = async () => {
+  const valid = await form.value?.validate()
+  if (!valid) {
+    return
+  }
+  // 更新管理员
+  if (props.adminId) {
+    await updateAdmin(props.adminId, formData.value)
+  } else {
+    // 添加管理员
+    await createAdmin(formData.value)
+  }
+  emit('success')
+  ElMessage.success('保存成功')
 }
 </script>
 
