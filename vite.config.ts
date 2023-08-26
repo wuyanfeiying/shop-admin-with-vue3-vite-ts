@@ -10,6 +10,12 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // 项目的目标浏览器兼容性配置
+  // 可选值："chrome"、"edge"、"firefox"、"safari"、"ios"、"android"等
+  // 更多配置选项请参考：https://vitejs.dev/config/#target
+  build: {
+    target: ['edge90', 'chrome90', 'firefox90', 'safari15']
+  },
   plugins: [
     vue(),
     eslintPlugin({

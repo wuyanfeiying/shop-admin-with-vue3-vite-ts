@@ -3,3 +3,14 @@
  * @LastEditors: wuyanfeiying
  * @desc: 媒体管理
 -->
+<template>
+  媒体管理
+</template>
+
+<script setup lang='ts'>
+
+</script>
+
+<style>
+
+</style>

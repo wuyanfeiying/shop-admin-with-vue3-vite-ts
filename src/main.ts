@@ -18,14 +18,30 @@ app.use(store, key)
 app.use(elementPlus)
 app.use(VXETable)
 
-// 自动注册全局组件
-const modules = import.meta.glob('./components/**/index.ts')
+// // 自动注册全局组件
+// const modules = import.meta.glob('./components/**/index.ts')
 
-for (const path in modules) {
-  // 根据路径导入组件
-  const component = await import(/* @vite-ignore */path)
+// for (const path in modules) {
+//   // 根据路径导入组件
+//   const component = await import(/* @vite-ignore */path)
 
-  // 注册组件
-  app.use(component.default)
+//   // 注册组件
+//   app.use(component.default)
+// }
+
+const registerComponents = async () => {
+  const modules = await import.meta.glob('./components/**/index.ts')
+
+  const paths = Object.keys(modules)
+  const imports = paths.map(path => import(/* @vite-ignore */ path))
+  const components = await Promise.all(imports)
+
+  components.forEach(component => {
+    // 注册组件
+    app.use(component.default)
+  })
 }
+
+registerComponents()
+
 app.mount('#app')

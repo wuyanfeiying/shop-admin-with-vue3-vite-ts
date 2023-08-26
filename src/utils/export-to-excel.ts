@@ -2,7 +2,7 @@
  * @Date: 2023-08-26 11:28:04
  * @LastEditors: wuyanfeiying
  */
-import xlsx from 'xlsx'
+import * as xlsx from 'xlsx'
 
 export const jsonToExcel = (options: {
   data: any[]

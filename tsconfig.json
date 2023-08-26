@@ -30,6 +30,7 @@
     "src/**/*.d.ts", 
     "src/**/*.tsx",
     "src/**/*.vue",
+    "src/types/*.d.ts",
     
     // 新增:明确包含ESLint要检查的文件
     "tests/**/*.ts",
