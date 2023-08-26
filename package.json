@@ -18,7 +18,9 @@
     "sortablejs": "^1.15.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vxe-table": "^4.5.7",
+    "xe-utils": "^3.5.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
