@@ -20,7 +20,8 @@
     "vue-router": "^4.2.4",
     "vuex": "^4.0.2",
     "vxe-table": "^4.5.7",
-    "xe-utils": "^3.5.12"
+    "xe-utils": "^3.5.12",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
