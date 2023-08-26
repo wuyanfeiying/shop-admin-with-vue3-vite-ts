@@ -7,10 +7,6 @@
 </template>
 
 <script setup lang='ts'>
-import { logout } from '@/api/common'
-logout()
-logout()
-logout()
 </script>
 
 <style lang="scss" scoped>
